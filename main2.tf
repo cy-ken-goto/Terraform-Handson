@@ -102,3 +102,11 @@ resource "aws_db_instance" "db-instance" {
     parameter_group_name = "${aws_db_parameter_group.db-pg-mysql56.name}"
 }
 
+/*
+ * EC2周り
+ */
+resource "aws_key_pair" "sshkey" {
+  key_name = "${var.app_name}-key"
+  public_key = "${var.my_public_key}"
+}
+
