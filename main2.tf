@@ -33,6 +33,13 @@ resource "aws_vpc" "main-vpc" {
 resource "aws_internet_gateway" "main-gw" {
     vpc_id = "${aws_vpc.main-vpc.id}"
 }
+resource "aws_route_table" "public-route" {
+    vpc_id = "${aws_vpc.main-vpc.id}"
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = "${aws_internet_gateway.main-gw.id}"
+    }
+}
 resource "aws_subnet" "main-publicsubnet-a" {
     vpc_id            = "${aws_vpc.main-vpc.id}"
     cidr_block        = "10.100.10.0/24"
@@ -42,6 +49,14 @@ resource "aws_subnet" "main-publicsubnet-c" {
     vpc_id            = "${aws_vpc.main-vpc.id}"
     cidr_block        = "10.100.20.0/24"
     availability_zone = "ap-northeast-1c"
+}
+resource "aws_route_table_association" "puclic-a" {
+    subnet_id = "${aws_subnet.main-publicsubnet-a.id}"
+    route_table_id = "${aws_route_table.public-route.id}"
+}
+resource "aws_route_table_association" "puclic-c" {
+    subnet_id = "${aws_subnet.main-publicsubnet-c.id}"
+    route_table_id = "${aws_route_table.public-route.id}"
 }
 
 /*
