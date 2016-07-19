@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "public-igw" {
 resource "aws_subnet" "main-publicsubnet-1" {
     vpc_id            = "${aws_vpc.main-vpc.id}"
     cidr_block        = "${var.public_subnet_cidrs.1}"
-    availability_zone = "ap-northeast-1a"
+    availability_zone = "${var.availability_zones.1}"
     tags {
         Name = "${var.app_name}-public-subnet-1"
     }
@@ -35,7 +35,7 @@ resource "aws_subnet" "main-publicsubnet-1" {
 resource "aws_subnet" "main-publicsubnet-2" {
     vpc_id            = "${aws_vpc.main-vpc.id}"
     cidr_block        = "${var.public_subnet_cidrs.2}"
-    availability_zone = "ap-northeast-1c"
+    availability_zone = "${var.availability_zones.2}"
     tags {
         Name = "${var.app_name}-public-subnet-2"
     }
@@ -47,7 +47,7 @@ resource "aws_subnet" "main-publicsubnet-2" {
 resource "aws_subnet" "main-privatesubnet-1" {
     vpc_id            = "${aws_vpc.main-vpc.id}"
     cidr_block        = "${var.private_subnet_cidrs.1}"
-    availability_zone = "ap-northeast-1a"
+    availability_zone = "${var.availability_zones.1}"
     tags {
         Name = "${var.app_name}-private-subnet-1"
     }
@@ -55,7 +55,7 @@ resource "aws_subnet" "main-privatesubnet-1" {
 resource "aws_subnet" "main-privatesubnet-2" {
     vpc_id            = "${aws_vpc.main-vpc.id}"
     cidr_block        = "${var.private_subnet_cidrs.2}"
-    availability_zone = "ap-northeast-1c"
+    availability_zone = "${var.availability_zones.2}"
     tags {
         Name = "${var.app_name}-private-subnet-2"
     }
