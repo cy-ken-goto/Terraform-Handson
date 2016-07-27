@@ -54,6 +54,10 @@
  * EC2のインスタンスタイプを変えてapplyするとか
 1. IAM ユーザ削除の失敗
  * IAMユーザは結構色々なところに紐付けされており、それが全て外れていないと削除できない
+ * AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+ * Management Console パスワード
+ * IAM Policy
+ * IAM Group 所属情報
 
 ## 今ある環境に適用するには・・・？
 
@@ -65,4 +69,47 @@
 ### どうやる？
 * 残念ながらTerraform自体にその機能は存在しない
 * Wantedlyの方が作った[Terraforming](https://github.com/dtan4/terraforming)というOSSが存在する
+ * AWS専用
  * かなり活発
+
+### インストール
+```
+$ gem install terraforming
+```
+
+または
+
+```
+$ docker pull quay.io/dtan4/terraforming:latest
+```
+
+### 使い方
+#### tf 形式の出力
+```
+$ export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXX
+$ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ export AWS_DEFAULT_REGION=xx-yyyy-0
+$ terraforming s3
+```
+
+または
+
+```
+$ docker run \
+    --rm \
+    --name terraforming \
+    -e AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXX \
+    -e AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
+    -e AWS_DEFAULT_REGION=xx-yyyy-0 \
+    quay.io/dtan4/terraforming:latest \
+    terraforming s3
+```
+
+#### tfstate 形式の出力
+* --tfstateオプションつけるだけ
+```
+$ export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXXXXX
+$ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ export AWS_DEFAULT_REGION=xx-yyyy-0
+$ terraforming s3 --tfstate
+```
