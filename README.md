@@ -1,11 +1,11 @@
 # インフラ勉強会#1「Terraformハンズオン」
 
-## インフラ勉強会の目的
+## 01: インフラ勉強会の目的
 * 今後利用していくまたは利用していきたいインフラ面の技術を広く共有することで仲間を増やす
 * インフラ面からのサービスの改善を促す
 * 息抜き
 
-## Terraformとは？
+## 02: Terraformとは？
 * https://www.terraform.io
 * Hashicorp社製
  * VagrantやたSerfやら作ってる会社
@@ -59,7 +59,12 @@
  * IAM Policy
  * IAM Group 所属情報
 
-## 今ある環境に適用するには・・・？
+### いけてないところ
+* Array使えない
+ * 0.7.0 で 対応されるよ！
+ * https://github.com/hashicorp/terraform/issues/57
+
+## 03: 今ある環境に適用するには・・・？
 
 ### 必要なもの
 * .tf ファイル
@@ -113,3 +118,8 @@ $ export AWS_SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 $ export AWS_DEFAULT_REGION=xx-yyyy-0
 $ terraforming s3 --tfstate
 ```
+
+## 04: 最後に
+* SProからやりはじめます。もしくはKB
+* 圧倒的に便利なので今後は利用します
+* 実は今日のテスト用サーバは・・・
