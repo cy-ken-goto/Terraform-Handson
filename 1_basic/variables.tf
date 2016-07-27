@@ -16,5 +16,5 @@ variable "images" {
 }
 
 variable "app_name" {
-    default = "yourname" # only lowercase
+    default = "kengoto" # only lowercase
 }
