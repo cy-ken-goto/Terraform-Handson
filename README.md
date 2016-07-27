@@ -6,6 +6,7 @@
 * 息抜き
 
 ## Terraformとは？
+* https://www.terraform.io
 * Hashicorp社製
  * VagrantやたSerfやら作ってる会社
 * **サーバ構成**のコード化を行うためのもの
@@ -19,4 +20,35 @@
  * なんとGitHubのチーム管理やリポジトリ管理もできる
  * 実はただのサーバ構成ツールで終わっていない
 
-## 
+### コード
+* JSON 互換である HCL (HashiCorp Configuration Language) で記述する
+* 複雑なことは苦手
+* その分「見たまま」の内容が反映される
+
+### 構成要素
+* Provider
+ * 実行先のサービス
+ * ex.) AWS, GCP
+* Resource
+ * サービスごとないで利用するインスタンスなど
+ * ex.) EC2インスタンス, VPC, Route53のレコード
+* Variable
+ * 各種パラメータ
+ * ex.) AccessKey, AMI ID
+
+### 実行方法
+1. コード記述
+1. テスト
+1. 実行
+
+## 今ある環境に適用するには・・・？
+
+### 必要なもの
+* .tf ファイル
+* Terraformのリソース管理はapply後に作成される**terraform.tfstate**で管理される
+ * このファイルをGit管理するとコンフリクト起こすのでやめましょう
+
+### どうやる？
+* 残念ながらTerraform自体にその機能は存在しない
+* Wantedlyの方が作った[Terraforming](https://github.com/dtan4/terraforming)というOSSが存在する
+ * かなり活発
